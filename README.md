@@ -6,10 +6,8 @@ Recommends a house price to an estate agent based on nearby recent sales in a da
 similarity to the customers’ house.
 
 # Sample databases included:
-Database – contains previously sold houses.
-House – contains the clients house ready for valuation
-The values in these databases can be edited to affect the outcome of the recommender and are 
-included for test purposes only.
+'Database.csv' – contains previously sold houses.
+'House.csv' – contains the clients house ready for valuation
 
 # How to use:
 Open the 'Recommender.py' file in an appropriate IDE (it was created in vscode)
@@ -34,7 +32,7 @@ If the relative value is 1, it is the same value as the customers’ house.
 
 If the relative value is < 1 it is worth less than the customers’ house.
 
-If the relative value is > 1 it is worth less than the customers’ house.
+If the relative value is > 1 it is worth more than the customers’ house.
 
 The system then finds the house with the closest relative value to the customers house and sets 
 the customers house value based on the relative value of that closest match.
@@ -42,9 +40,20 @@ the customers house value based on the relative value of that closest match.
 E.g. If the closest matched house is worth 100,000 and has a relative value of 0.99 to the 
 customers house, the customers house is worth 101,000.
 
-The system also adjusts for inflation as per client’s request (3% every 3 months since sale).
+The system also adjusts for inflation as per client’s request (3% for every 3 months since sale).
 
 # Original brief:
+When an estate agency agrees to represent a client who is selling their house, the first thing
+to do is apply a residential property valuation to determine what price to put on the house. To
+determine this value, the most common method used by agents is to look at recently sold properties 
+that are comparable with the client’s property.
+
+Franklin’s estate agency has employed you as a consultant to automate this valuation
+process.
+
+The following description is a transcription of a sound recording of Franklin’s senior estate 
+agent describing the valuation process: 
+
 “When a new client approaches us to sell their house, the first thing we do is go through a 
 valuation process. This means finding the right selling price for the house. We do this by 
 comparing the client’s house with similar properties that we’ve sold recently. The more a recently 
