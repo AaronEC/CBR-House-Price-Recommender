@@ -16,23 +16,33 @@ Open the Recommender.py file in an appropriate IDE (it was created in vscode)
 Ensure sample databases are in same directory as .py file
 Run the .py file, the output will appear in the terminal/console
 
-# How it works
-The program has a simple case-based operation
+# How it works:
+The program has a simple case-based AI operation.
+
 It compares each previously sold house (which is within 0.25 miles of the customers house, as per 
 client’s specification) and assigns each one a relative value.
-This relative value is based on the weighted values (as weighted by the client) in the database 
-for each house (size, amount of rooms etc)
-These weights can be changed in the “weights” section of the code
+
+This relative value is based on the weighted values (as weighted by the client) in the database.
+
+for each house (size, amount of rooms etc).
+
+These weights can be changed in the “weights” section of the code.
+
 If the relative value is 1, it is the same value as the customers’ house.
+
 If the relative value is < 1 it is worth less than the customers’ house.
+
 If the relative value is > 1 it is worth less than the customers’ house.
+
 The system then finds the house with the closest relative value to the customers house and sets 
 the customers house value based on the relative value of that closest match.
-E.g. If the closest matched house is worth 100,000 and has a relative value of 0.99 to the 
-customers house, the customers house is worth 101,000
-The system also adjusts for inflation as per client’s request (3% every 3 months since sale)
 
-# Original brief
+E.g. If the closest matched house is worth 100,000 and has a relative value of 0.99 to the 
+customers house, the customers house is worth 101,000.
+
+The system also adjusts for inflation as per client’s request (3% every 3 months since sale).
+
+# Original brief:
 “When a new client approaches us to sell their house, the first thing we do is go through a 
 valuation process. This means finding the right selling price for the house. We do this by 
 comparing the client’s house with similar properties that we’ve sold recently. The more a recently 
