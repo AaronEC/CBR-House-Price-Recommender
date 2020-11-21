@@ -17,10 +17,9 @@ class house:
         self.area = int(row[4])
         self.rooms = int(row[5])
         self.bedrooms = int(row[6])
-        self.bathrooms = int(row[7])
-        self.detached = row[8]
-        self.garage = row[9]
-        self.energy = row[10]
+        self.detached = row[7]
+        self.garage = row[8]
+        self.energy = str(row[9]).strip('\n')
 
         # Adjust price for inflation (3% per 3 months)
         for i in range(0, self.date, 3):
@@ -31,25 +30,40 @@ class house:
 def value(house):
     """ Calculates value of a passed house, relative to the customers house, based on
     weighted values. """
+    adjustment = 0
     if house.distance > 0.25:
         print(f"\nHouse {house.name} too far away, disregarded")
         house.value, house.price = 0, 0
     else:
         print(f"\nHouse {house.name} within distance, calculating...")
         value = weights["distance"]
+        print(value)
         if house.area and customerHouse.area:
             value += weights["area"] * (house.area / customerHouse.area)
+            print(value)
         if house.rooms and customerHouse.rooms:
             value += weights["rooms"] * (house.rooms / customerHouse.rooms)
+            print(value)
         if house.bedrooms and customerHouse.bedrooms:
             value += weights["bedrooms"] * (house.bedrooms / customerHouse.bedrooms)
-        if house.detached == customerHouse.detached:
+            print(value)
+        if house.energy and customerHouse.energy:
+            value += weights["energy"] * (energyRating[house.energy] / energyRating[customerHouse.energy])
+            print(value)
+        if house.detached is 'Y':
             value += weights["detached"]
-        if house.garage == customerHouse.garage:
+            print(value)
+        if house.garage is 'Y':
             value += weights["garage"]
-        if house.energy == customerHouse.energy:
-            value += weights["energy"]
-        house.value = round(value / potential, 2)
+            print(value)
+        print(customerHouse.detached)
+        if customerHouse.detached is 'N':
+            adjustment += weights["detached"]
+            print(f"Detached: {adjustment}")
+        if customerHouse.garage is 'N':
+            adjustment += weights["garage"]
+            print(f"Garage: {adjustment}")
+        house.value = round(value / (potential - adjustment), 2)
         print(f"Relative value: {house.value}")
 
 def saveHouse(file, savedHouse):
@@ -57,6 +71,7 @@ def saveHouse(file, savedHouse):
     # Format house object ready for saving
     savedHouse.name = len(houseDatabase) + 1
     savedHouse.price = round(savedHouse.price)
+    savedHouse.energy = savedHouse.energy + "\n"
     # Convert object to list
     savedHouse = list(savedHouse.__dict__.values())
     savedHouse.pop()
@@ -88,10 +103,15 @@ weights = {
 }
 potential = sum(weights.values())
 
+energyRating = {
+    "A": 3,
+    "B": 2,
+    "C": 1
+}
+
 # Send database files to 2d arrays ready for processing
 houseIn = [line.split(',') for line in open('House.csv')]
 databaseIn = [line.split(',') for line in open('Database.csv')]
-print(databaseIn)
 
 # Define object of class 'house' for customer house and reset price
 customerHouse = house(houseIn[1])
