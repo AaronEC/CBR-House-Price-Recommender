@@ -2,7 +2,7 @@
 # Impliment distance scoring?
 # Calculation for bool value weighting?
 
-import locale
+import locale 
 locale.setlocale(locale.LC_ALL, '')
 
 class house:
