@@ -49,7 +49,6 @@ def value(house):
             value += weights["detached"]
         if house.garage is 'Y':
             value += weights["garage"]
-        print(customerHouse.detached)
         if customerHouse.detached is 'N':
             adjustment += weights["detached"]
         if customerHouse.garage is 'N':
@@ -123,8 +122,6 @@ for house in houseDatabase:
 bestMatchIndex = valueTotals.index(min(valueTotals, key=lambda x:abs(x-1)))
 # Calculate estimated customer house price based on value adjusted price of best match house
 customerHouse.price = houseDatabase[bestMatchIndex].price / min(valueTotals, key=lambda x:abs(x-1))
-# Save customer house to database to improve future recommendation accuracy
-saveHouse('Database.csv', customerHouse)
 
 # Output results summary to terminal
 print(f"""
@@ -135,3 +132,6 @@ Relative weighted value: {houseDatabase[bestMatchIndex].value}
 Estimated customer house value: {locale.currency(customerHouse.price, grouping=True)}p
 ------------------------------------------------------------------------------------
 """)
+
+# Save customer house to database to improve future recommendation accuracy
+saveHouse('Database.csv', customerHouse)
