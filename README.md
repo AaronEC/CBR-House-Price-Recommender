@@ -42,6 +42,13 @@ customers house, the customers house is worth 101,000.
 
 The system also adjusts for inflation as per client’s request (3% for every 3 months since sale).
 
+# Limitations:
+- Has no UI, as it's a basic university project and not for deployment, only outputs to database
+and terminal.
+- Distances from customer house need to be input into the database manually, again, as a basic
+university project, implementing a mapping API to calculate distance from address is beyond the
+scope of this project.
+
 # Original brief:
 When an estate agency agrees to represent a client who is selling their house, the first thing
 to do is apply a residential property valuation to determine what price to put on the house. To
