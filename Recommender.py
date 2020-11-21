@@ -37,32 +37,23 @@ def value(house):
     else:
         print(f"\nHouse {house.name} within distance, calculating...")
         value = weights["distance"]
-        print(value)
         if house.area and customerHouse.area:
             value += weights["area"] * (house.area / customerHouse.area)
-            print(value)
         if house.rooms and customerHouse.rooms:
             value += weights["rooms"] * (house.rooms / customerHouse.rooms)
-            print(value)
         if house.bedrooms and customerHouse.bedrooms:
             value += weights["bedrooms"] * (house.bedrooms / customerHouse.bedrooms)
-            print(value)
         if house.energy and customerHouse.energy:
             value += weights["energy"] * (energyRating[house.energy] / energyRating[customerHouse.energy])
-            print(value)
         if house.detached is 'Y':
             value += weights["detached"]
-            print(value)
         if house.garage is 'Y':
             value += weights["garage"]
-            print(value)
         print(customerHouse.detached)
         if customerHouse.detached is 'N':
             adjustment += weights["detached"]
-            print(f"Detached: {adjustment}")
         if customerHouse.garage is 'N':
             adjustment += weights["garage"]
-            print(f"Garage: {adjustment}")
         house.value = round(value / (potential - adjustment), 2)
         print(f"Relative value: {house.value}")
 
@@ -103,6 +94,7 @@ weights = {
 }
 potential = sum(weights.values())
 
+# Define energy rating scale
 energyRating = {
     "A": 3,
     "B": 2,
@@ -131,8 +123,10 @@ for house in houseDatabase:
 bestMatchIndex = valueTotals.index(min(valueTotals, key=lambda x:abs(x-1)))
 # Calculate estimated customer house price based on value adjusted price of best match house
 customerHouse.price = houseDatabase[bestMatchIndex].price / min(valueTotals, key=lambda x:abs(x-1))
+# Save customer house to database to improve future recommendation accuracy
+saveHouse('Database.csv', customerHouse)
 
-# Output results
+# Output results summary to terminal
 print(f"""
 ------------------------------------------------------------------------------------
 Closest match: House {houseDatabase[bestMatchIndex].name} 
@@ -141,5 +135,3 @@ Relative weighted value: {houseDatabase[bestMatchIndex].value}
 Estimated customer house value: {locale.currency(customerHouse.price, grouping=True)}p
 ------------------------------------------------------------------------------------
 """)
-
-saveHouse('Database.csv', customerHouse)
