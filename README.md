@@ -23,8 +23,7 @@ It compares each previously sold house (which is within 0.25 miles of the custom
 client’s specification) and assigns each one a relative value.
 
 This relative value is based on the weighted values (as weighted by the client) in the database.
-
-for each house (size, amount of rooms etc).
+for each house (size, amount of rooms, detached, etc).
 
 These weights can be changed in the “weights” section of the code.
 
@@ -34,13 +33,16 @@ If the relative value is < 1 it is worth less than the customers’ house.
 
 If the relative value is > 1 it is worth more than the customers’ house.
 
-The system then finds the house with the closest relative value to the customers house and sets 
+The system then finds the house with the closest weighted value to the customers house and sets 
 the customers house value based on the relative value of that closest match.
 
 E.g. If the closest matched house is worth 100,000 and has a relative value of 0.99 to the 
 customers house, the customers house is worth 101,000.
 
 The system also adjusts for inflation as per client’s request (3% for every 3 months since sale).
+
+The system then stores the new house back into the cases database, so that further 
+recommendations/valuations can use this case to be more accurate.
 
 # Limitations:
 - Has no UI, as it's a basic university project and not for deployment, only outputs to database
