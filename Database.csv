@@ -1,5 +1,7 @@
-House,Price,Months Since Sale,Distance (Miles),Living Area (sq. ft),Rooms,Bedrooms,Bathrooms,Detached,Garage,Energy Rating
-1,650000,6,0.15,3000,9,6,2,Y,Y,B
-2,450000,4,0.2,2000,7,3,2,Y,Y,B
-3,250000,8,0.1,1000,6,2,2,N,N,C
-4,550000,0,30,2000,8,4,2,Y,Y,B
+House,Price,Months Since Sale,Distance (Miles),Living Area (sq. ft),Rooms,Bedrooms,Detached,Garage,Energy Rating
+1,650000,6,0.15,3000,9,6,Y,Y,B
+2,450000,4,0.2,2000,7,3,Y,Y,B
+3,250000,8,0.1,1000,6,2,N,N,C
+4,550000,0,30,2000,8,4,Y,Y,B
+5,689585,0,0.0,5000,10,6,Y,Y,C
+6,397838,0,0.0,2500,4,2,Y,N,A

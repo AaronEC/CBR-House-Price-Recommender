@@ -1,2 +1,2 @@
-﻿House,Price,Months Since Sale,Distance (Miles),Living Area (sq. ft),Rooms,Bedrooms,Bathrooms,Detached,Garage,Energy Rating
-For Sale,0,0,0,2000,8,4,2,Y,Y,B
+﻿House,Price,Months Since Sale,Distance (Miles),Living Area (sq. ft),Rooms,Bedrooms,Detached,Garage,Energy Rating
+For Sale,0,0,0,2000,4,2,Y,N,B
