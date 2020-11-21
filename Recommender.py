@@ -1,8 +1,10 @@
 # TODO:
 # Impliment distance scoring?
 # Calculation for bool value weighting?
+# RETAIN new case (customers house) and add it to existing database
 
-import locale 
+# This import is just for showing monetary values formatted in local currency
+import locale
 locale.setlocale(locale.LC_ALL, '')
 
 class house:
@@ -50,6 +52,30 @@ def value(house):
         house.value = round(value / potential, 2)
         print(f"Relative value: {house.value}")
 
+def saveHouse(file, savedHouse):
+    """ Saves customer house back to database, with recommended value, for re-use"""
+    # Format house object ready for saving
+    savedHouse.name = len(houseDatabase) + 1
+    savedHouse.price = round(savedHouse.price)
+    # Convert object to list
+    savedHouse = list(savedHouse.__dict__.values())
+    savedHouse.pop()
+    # Convert list to string
+    outputString = ','.join(str(x) for x in savedHouse)
+    # Save string to .csv file
+    with open('Database.csv', 'a') as databaseOut:
+        # Check if exact house is already in database (to prevent double saving)
+        for line in databaseIn:
+            line = ','.join(str(x) for x in line)
+            if outputString[1:] == line[1:]:
+                print("Exact house already in database, not saving...")
+                break
+        # Save to database, if it is a unique entry
+        else:
+            print("House not already in database, saving...")
+            databaseOut.write(outputString)
+
+
 # Define weignting to be used for comparison (based off expert knowledge)
 weights = {
     "distance": 4,
@@ -65,6 +91,7 @@ potential = sum(weights.values())
 # Send database files to 2d arrays ready for processing
 houseIn = [line.split(',') for line in open('House.csv')]
 databaseIn = [line.split(',') for line in open('Database.csv')]
+print(databaseIn)
 
 # Define object of class 'house' for customer house and reset price
 customerHouse = house(houseIn[1])
@@ -94,3 +121,5 @@ Relative weighted value: {houseDatabase[bestMatchIndex].value}
 Estimated customer house value: {locale.currency(customerHouse.price, grouping=True)}p
 ------------------------------------------------------------------------------------
 """)
+
+saveHouse('Database.csv', customerHouse)
