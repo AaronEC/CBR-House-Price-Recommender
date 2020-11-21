@@ -14,7 +14,9 @@ included for test purposes only.
 # How to use:
 Open the 'Recommender.py' file in an appropriate IDE (it was created in vscode)
 Ensure sample databases 'Database.csv' and 'House.csv' are in same directory as 'Recommender.py' 
-file, run the 'Recommender.py' file in the IDE, the output will appear in the terminal/console
+file, run the 'Recommender.py' file in the IDE, the output will appear in the terminal/console.
+The values in the two databases can be changed, and more cases can be added to 'Database.csv' to
+see how this affects the recommender system, and therefore the customers recommended house price.
 
 # How it works:
 The program has a simple case-based AI operation.
