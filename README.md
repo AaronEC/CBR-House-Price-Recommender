@@ -16,6 +16,14 @@ file, run the 'Recommender.py' file in the IDE, the output will appear in the te
 The values in the two databases can be changed, and more cases can be added to 'Database.csv' to
 see how this affects the recommender system, and therefore the customers recommended house price.
 
+# Does it work:
+Tested on a the sample database of 10 houses recently sold in the Redland area of Bristol, UK, 
+the alorgithm recommended a house price, for a real house, of £630,612 (generated in 0.32 
+seconds). The real world estate agent valuation (by Richard Harding, Bristol) was £635,000. That's 
+a 99.2% accuracy rating!
+
+Dowload and test it yourself using the steps below, see what accuraccy your test case creates!
+
 # How it works:
 The program has a simple case-based AI operation.
 
