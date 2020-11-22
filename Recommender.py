@@ -72,7 +72,7 @@ def saveHouse(file, savedHouse):
         # Check if exact house is already in database (to prevent double saving)
         for line in databaseIn:
             line = ','.join(str(x) for x in line)
-            if outputString[1:] == line[1:]:
+            if outputString.split(',', 1)[1] == line.split(',', 1)[1]:
                 print("Exact house already in database, not saving...")
                 break
         # Save to database, if it is a unique entry
@@ -95,9 +95,12 @@ potential = sum(weights.values())
 
 # Define energy rating scale
 energyRating = {
-    "A": 3,
-    "B": 2,
-    "C": 1
+    "A": 6,
+    "B": 5,
+    "C": 4,
+    "D": 3,
+    "E": 2,
+    "F": 1
 }
 
 # Send database files to 2d arrays ready for processing
