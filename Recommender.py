@@ -45,13 +45,13 @@ def value(house):
             value += weights["bedrooms"] * (house.bedrooms / customerHouse.bedrooms)
         if house.energy and customerHouse.energy:
             value += weights["energy"] * (energyRating[house.energy] / energyRating[customerHouse.energy])
-        if house.detached is 'Y':
+        if house.detached == 'Y':
             value += weights["detached"]
-        if house.garage is 'Y':
+        if house.garage == 'Y':
             value += weights["garage"]
-        if customerHouse.detached is 'N':
+        if customerHouse.detached == 'N':
             adjustment += weights["detached"]
-        if customerHouse.garage is 'N':
+        if customerHouse.garage == 'N':
             adjustment += weights["garage"]
         house.value = round(value / (potential - adjustment), 2)
         print(f"Relative value: {house.value}")
@@ -137,4 +137,14 @@ Estimated customer house value: {locale.currency(customerHouse.price, grouping=T
 """)
 
 # Save customer house to database to improve future recommendation accuracy
-saveHouse('Database.csv', customerHouse)
+userSave = ""
+while userSave.lower() != "y" or userSave.lower() != "n":
+    userSave = input("Save valuation to database? (Y/N): \n")
+    if userSave.lower() == "y":
+        saveHouse('Database.csv', customerHouse)
+        break
+    elif userSave.lower() == "n":
+        print("Not saving")
+        break
+    else:
+        print("Invalid input, enter Y for yes, or N for no")
