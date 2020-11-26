@@ -28,8 +28,11 @@ class house:
         self.value = 0
 
 def value(house):
-    """ Calculates value of a passed house, relative to the customers house, based on
-    weighted values. """
+    """ Calculates and updates value of a passed house, relative to the customers house, 
+    based on weighted values. 
+    :type house: house[class]
+    :rtype: void
+    """
     adjustment = 0
     if house.distance > 0.25:
         print(f"\nHouse {house.name} too far away, disregarded")
@@ -57,7 +60,11 @@ def value(house):
         print(f"Relative value: {house.value}")
 
 def saveHouse(file, savedHouse):
-    """ Saves customer house back to database, with recommended value, for re-use"""
+    """ Saves customer house back to database, with recommended value, for re-use
+    :type file: database file name
+    :type savedHouse: house[class]
+    :rtype: void
+    """
     # Format house object ready for saving
     savedHouse.name = len(houseDatabase) + 1
     savedHouse.price = round(savedHouse.price)
