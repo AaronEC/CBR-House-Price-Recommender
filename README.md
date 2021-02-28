@@ -1,6 +1,6 @@
 # AUTHOR: Aaron Cardwell – aaron_cardwell@hotmail.com
 
-# Case-Based Reasoning RECOMMENDER system
+# Case-Based Reasoning AI RECOMMENDER system
 
 Recommends a house price to an estate agent based on nearby recent sales in a database, and their 
 similarity to the customers’ house.
